@@ -1,79 +1,141 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-@import url('https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap');
+/* index.css - THE HACKER CONSOLE THEME */
+:root {
+  --neon-green: #00ff00;
+  --neon-red: #ff3333;
+  --bg-black: #050505;
+  --terminal-bg: #0a0a0a;
+}
 
 body {
-  @apply bg-black text-neon-green font-mono overflow-hidden;
-  background-image: radial-gradient(circle at center, #111 0%, #000 100%);
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-black);
+  color: var(--neon-green);
+  font-family: 'Courier New', Courier, monospace;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  /* THIS CENTERS EVERYTHING */
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
 }
 
-/* Custom Scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
-::-webkit-scrollbar-track {
-  background: #000; 
-}
-::-webkit-scrollbar-thumb {
-  background: #00ff41; 
+#root {
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
-/* Glitch Utility */
-.glitch-text {
+/* THE MAIN TERMINAL WINDOW (CENTERED) */
+.terminal-container {
+  width: 900px;
+  height: 85vh;
+  background-color: var(--terminal-bg);
+  border: 2px solid var(--neon-green);
+  box-shadow: 0 0 30px rgba(0, 255, 0, 0.15);
+  display: flex;
+  flex-direction: column;
   position: relative;
 }
 
-.glitch-text::before,
-.glitch-text::after {
-  content: attr(data-text);
+/* HEADER / TITLE BAR */
+.terminal-header {
+  background-color: var(--neon-green);
+  color: black;
+  padding: 10px;
+  font-weight: bold;
+  text-align: center;
+  letter-spacing: 2px;
+}
+
+/* CHAT AREA */
+.chat-box {
+  flex: 1;
+  /* Takes up all remaining space */
+  overflow-y: auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* MESSAGES */
+.message-user {
+  color: var(--neon-green);
+  align-self: flex-end;
+  text-align: right;
+  max-width: 80%;
+  text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+}
+
+.message-ai {
+  color: var(--neon-red) !important;
+  /* FORCE RED */
+  align-self: flex-start;
+  text-align: left;
+  max-width: 80%;
+  text-shadow: 0 0 8px rgba(255, 51, 51, 0.6);
+  font-weight: bold;
+}
+
+/* INPUT AREA AT THE BOTTOM */
+.input-area {
+  display: flex;
+  border-top: 2px solid var(--neon-green);
+  height: 60px;
+  background: black;
+}
+
+.input-area input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: var(--neon-green);
+  font-family: 'Courier New', monospace;
+  font-size: 18px;
+  padding: 0 20px;
+  outline: none;
+}
+
+.input-area button {
+  width: 120px;
+  background: var(--neon-green);
+  color: black;
+  font-weight: 900;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.2s;
+}
+
+.input-area button:hover {
+  background: white;
+  box-shadow: 0 0 15px white;
+}
+
+/* WALLET BOX (Top Right) */
+.wallet-box {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  top: -50px;
+  right: 0;
+  border: 1px solid cyan;
+  color: cyan;
+  padding: 5px 15px;
+  background: black;
+  font-size: 14px;
 }
 
-.glitch-text::before {
-  left: 2px;
-  text-shadow: -1px 0 #ff00c1;
-  clip: rect(44px, 450px, 56px, 0);
-  animation: glitch-anim 5s infinite linear alternate-reverse;
+/* SCROLLBAR STYLE */
+::-webkit-scrollbar {
+  width: 10px;
 }
 
-.glitch-text::after {
-  left: -2px;
-  text-shadow: -1px 0 #00fff9;
-  clip: rect(44px, 450px, 56px, 0);
-  animation: glitch-anim2 5s infinite linear alternate-reverse;
+::-webkit-scrollbar-track {
+  background: #000;
 }
 
-@keyframes glitch-anim {
-  0% { clip: rect(41px, 9999px, 12px, 0); }
-  5% { clip: rect(89px, 9999px, 81px, 0); }
-  100% { clip: rect(6px, 9999px, 47px, 0); }
-}
-
-@keyframes glitch-anim2 {
-  0% { clip: rect(2px, 9999px, 69px, 0); }
-  5% { clip: rect(13px, 9999px, 7px, 0); }
-  100% { clip: rect(54px, 9999px, 20px, 0); }
-}
-
-.scanline {
-  width: 100%;
-  height: 100px;
-  z-index: 10;
-  background: linear-gradient(0deg, rgba(0,0,0,0) 0%, rgba(0, 255, 65, 0.1) 50%, rgba(0,0,0,0) 100%);
-  opacity: 0.1;
-  position: absolute;
-  bottom: 100%;
-  animation: scanline 10s linear infinite;
-  pointer-events: none;
-}
-
-@keyframes scanline {
-  0% { bottom: 100%; }
-  100% { bottom: -100%; }
+::-webkit-scrollbar-thumb {
+  background: #003300;
+  border: 1px solid #00ff00;
 }

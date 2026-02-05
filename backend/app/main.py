@@ -17,7 +17,7 @@ app.add_middleware(
 
 @app.get("/")
 def read_root():
-    return {"message": "Iron Gate is online. Disturbance detected."}
+    return {"message": "Demir Kapı çevrimiçi. İhlal tespit edildi."}
 
 @app.get("/vault", response_model=WalletStatus)
 def get_vault_status():

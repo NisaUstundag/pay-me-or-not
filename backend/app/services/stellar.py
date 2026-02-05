@@ -1,78 +1,39 @@
-from stellar_sdk import Server, Keypair, Network, TransactionBuilder, Asset
-import os
+from stellar_sdk import Server, Keypair, TransactionBuilder, Network, Asset
 import requests
-from dotenv import load_dotenv
 
-load_dotenv()
+# AI'S WALLET SECRET KEY (The Vault)
+SOURCE_SECRET = "SDGJASTVPFLZV7RPSS37Z7CXBRBFE25XAQAXULNS4OJCWVOX2S25TL4A"
 
-class StellarService:
-    def __init__(self):
-        self.secret_key = os.getenv("STELLAR_SECRET_KEY")
-        self.public_key = os.getenv("STELLAR_PUBLIC_KEY")
-        self.horizon_url = os.getenv("STELLAR_HORIZON_URL", "https://horizon-testnet.stellar.org")
+def send_payment(destination_address):
+    try:
+        # Connect to Stellar Testnet
+        server = Server("https://horizon-testnet.stellar.org")
+        source_keypair = Keypair.from_secret(SOURCE_SECRET)
         
-        # If no keys, generate ephemeral ones (or in real app, error out)
-        if not self.secret_key:
-            print("WARNING: No Stellar Keys found. Generating temporary keys for session.")
-            kp = Keypair.random()
-            self.secret_key = kp.secret
-            self.public_key = kp.public_key
-            print(f"TEMP KEYS - Public: {self.public_key}")
-            print(f"TEMP KEYS - Secret: {self.secret_key}")
-            # Auto-fund
-            self.fund_account()
-
-        self.server = Server(horizon_url=self.horizon_url)
-
-    def fund_account(self):
-        print(f"Funding account {self.public_key} via Friendbot...")
-        try:
-            response = requests.get(f"https://friendbot.stellar.org?addr={self.public_key}")
-            if response.status_code == 200:
-                print("Funding successful!")
-            else:
-                print(f"Funding failed: {response.text}")
-        except Exception as e:
-            print(f"Error funding account: {e}")
-
-    def get_balance(self) -> str:
-        try:
-            account = self.server.accounts().account_id(self.public_key).call()
-            for balance in account['balances']:
-                if balance['asset_type'] == 'native':
-                    return balance['balance']
-            return "0.0"
-        except Exception as e:
-            return f"Error: {str(e)}"
-
-    def send_payment(self, destination: str, amount: str = "10.0") -> str:
-        try:
-            # Load source account
-            source_account = self.server.load_account(account_id=self.public_key)
-            
-            # Build transaction
-            transaction = (
-                TransactionBuilder(
-                    source_account=source_account,
-                    network_passphrase=Network.TESTNET_NETWORK_PASSPHRASE,
-                    base_fee=100
-                )
-                .append_payment_op(
-                    destination=destination,
-                    asset=Asset.native(),
-                    amount=amount
-                )
-                .set_timeout(30)
-                .build()
+        # Load Source Account
+        source_account = server.load_account(account_id=source_keypair.public_key)
+        
+        # Build Transaction (Send 100 XLM)
+        transaction = (
+            TransactionBuilder(
+                source_account=source_account,
+                network_passphrase=Network.TESTNET_NETWORK_PASSPHRASE,
+                base_fee=100
             )
-            
-            # Sign
-            transaction.sign(self.secret_key)
-            
-            # Submit
-            response = self.server.submit_transaction(transaction)
-            return f"SUCCESS! Hash: {response['hash']}"
-        except Exception as e:
-            return f"Payment Failed: {str(e)}"
-
-stellar_service = StellarService()
+            .append_payment_op(
+                destination=destination_address,
+                asset=Asset.native(),
+                amount="100"
+            )
+            .set_timeout(30)
+            .build()
+        )
+        
+        # Sign and Submit
+        transaction.sign(source_keypair)
+        response = server.submit_transaction(transaction)
+        
+        return {"status": "success", "hash": response["hash"]}
+        
+    except Exception as e:
+        return {"status": "error", "message": str(e)}
