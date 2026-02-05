@@ -66,7 +66,7 @@ pip install -r requirements.txt
 Create a `.env` file inside `/backend`:
 
 ```env
-AI_API_KEY=YOUR_API_KEY
+GEMİNİ_API_KEY=YOUR_API_KEY
 SOURCE_SECRET_KEY=S_TESTNET_SECRET_KEY
 ```
 
