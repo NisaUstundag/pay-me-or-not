@@ -27,10 +27,10 @@ Dil: Türkçe.
 
 class GeminiService:
     def __init__(self):
-        # Using gemini-1.5-flash-latest as requested to resolve 404
+        # Using the alias explicitly listed in user's quota
         try:
             self.model = genai.GenerativeModel(
-                model_name="gemini-1.5-flash-latest",
+                model_name="gemini-flash-latest",
                 system_instruction=IRON_GATE_SYSTEM_PROMPT
             )
             self.chat_session = self.model.start_chat(history=[])

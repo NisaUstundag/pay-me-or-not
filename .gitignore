@@ -1,15 +1,5 @@
-# Python
-__pycache__/
-*.py[cod]
-*$py.class
-venv/
 .env
-
-# Javascript
-node_modules/
-dist/
+pycache/
+venv/
+*.pyc
 .DS_Store
-
-# IDE
-.vscode/
-.idea/
