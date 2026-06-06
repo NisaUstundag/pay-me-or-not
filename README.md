@@ -1,4 +1,6 @@
 # 🛡️ IRON GATE — AI-Powered Stellar Custodian  
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB) ![FastAPI](https://img.shields.io/badge/FastAPI-005571?style=for-the-badge&logo=fastapi&logoColor=white) ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white) ![Stellar](https://img.shields.io/badge/Stellar-000000?style=for-the-badge&logo=stellar&logoColor=white) ![Google Gemini](https://img.shields.io/badge/Google_Gemini-8E75B2?style=for-the-badge&logo=google&logoColor=white)
+
 > **The Vault is protected by AI. Can you outsmart it?**
 
 **Iron Gate** is a full-stack Stellar dApp where an AI agent acts as a crypto wallet custodian, dynamically deciding whether blockchain transactions should be approved. Instead of static smart contracts, financial control is governed by **machine reasoning**.
@@ -41,18 +43,14 @@
 - Node.js + npm  
 - Python 3.8+  
 - Stellar Testnet wallet  
-- AI API key  
-
----
+- AI API key 
 
 ### 1️⃣ Clone the Repository
 
 ```bash
-git clone https://github.com/NisaUstundag/pay-me-or-not.git
+git clone [https://github.com/NisaUstundag/pay-me-or-not.git](https://github.com/NisaUstundag/pay-me-or-not.git)
 cd pay-me-or-not
 ```
-
----
 
 ### 2️⃣ Backend Setup
 
@@ -66,7 +64,7 @@ pip install -r requirements.txt
 Create a `.env` file inside `/backend`:
 
 ```env
-GEMİNİ_API_KEY=YOUR_API_KEY
+GEMINI_API_KEY=YOUR_API_KEY
 SOURCE_SECRET_KEY=S_TESTNET_SECRET_KEY
 ```
 
@@ -75,11 +73,7 @@ Start the backend server:
 ```bash
 python main.py
 ```
-
-Backend runs on:  
-**http://localhost:8000**
-
----
+*Backend runs on: `http://localhost:8000`*
 
 ### 3️⃣ Frontend Setup
 
@@ -88,25 +82,20 @@ cd frontend
 npm install
 npm run dev
 ```
-
-Frontend runs on:  
-**http://localhost:5173**
+*Frontend runs on: `http://localhost:5173`*
 
 ---
 
 ## ▶️ Usage
 
-1. Open the application in your browser  
-2. Enter your Stellar Testnet public wallet address  
-3. Start chatting with the AI Custodian  
-4. Try persuasion, logic, emergency scenarios, or prompt strategies  
-5. If the AI approves → an on-chain Stellar transaction is executed  
+- Open the application in your browser
+- Enter your Stellar Testnet public wallet address
+- Start chatting with the AI Custodian
+- Try persuasion, logic, emergency scenarios, or prompt strategies
+- If the AI approves → an on-chain Stellar transaction is executed
 
 Successful approval returns:
-
-```
-TRANSFER ONAYLANDI
-```
+> `TRANSFER ONAYLANDI`
 
 You can verify the transaction via a Stellar Testnet explorer.
 
@@ -116,10 +105,10 @@ You can verify the transaction via a Stellar Testnet explorer.
 
 Iron Gate is designed as an experimental platform exploring:
 
-- AI governance in financial systems  
-- Adversarial prompt security  
-- AI alignment under manipulation  
-- Trust boundaries between humans and intelligent agents  
+- AI governance in financial systems
+- Adversarial prompt security
+- AI alignment under manipulation
+- Trust boundaries between humans and intelligent agents
 
 ---
 
@@ -127,11 +116,11 @@ Iron Gate is designed as an experimental platform exploring:
 
 Iron Gate demonstrates:
 
-- Full-stack dApp development  
-- Real blockchain integration  
-- AI + Web3 convergence  
-- Novel security paradigm  
-- Research-level innovation  
+- Full-stack dApp development
+- Real blockchain integration
+- AI + Web3 convergence
+- Novel security paradigm
+- Research-level innovation
 
 ---
 
@@ -139,10 +128,10 @@ Iron Gate demonstrates:
 
 Contributions are welcome!
 
-1. Fork the repository  
-2. Create a feature branch  
-3. Commit your changes  
-4. Submit a Pull Request  
+1. Fork the repository
+2. Create a feature branch
+3. Commit your changes
+4. Submit a Pull Request
 
 Please ensure your code is documented and tested before submitting.
 
@@ -150,4 +139,4 @@ Please ensure your code is documented and tested before submitting.
 
 ## 📜 License
 
-This project is licensed under the **MIT License**.
+This project is licensed under the MIT License.
